@@ -5,6 +5,7 @@ date: 2019-06-24T16:58:34.000Z
 tags: null
 permalink: 2019-06-24-async-function-Unexpected-identifier
 ---
+
 ```js
 const qiniu = require('qiniu')
 const nanoid = require('nanoid')
@@ -34,11 +35,11 @@ function uploadToQiniu(url, key){
 
 ;(async () => {
 
-   let movies = [{ 
+   let movies = [{
             video: 'http://vt1.doubanio.com/201810051252/7a0e8fcb533b6d4c623aa24a48a6e301/view/movie/M/402330315.mp4',
             doubanId: 26752088,
             poster: 'https://img3.doubanio.com/view/photo/l_ratio_poster/public/p2519070834.jpg',
-            cover: 'https://img1.doubanio.com/img/trailer/medium/2527050797.jpg' 
+            cover: 'https://img1.doubanio.com/img/trailer/medium/2527050797.jpg'
    }]
 
    movies.map(movie => {
@@ -58,21 +59,23 @@ function uploadToQiniu(url, key){
                     movie.videoKey = videoData.key //将上传成功的key赋值给本地的文件作为标记
                 }
                 if(coverData.key) {
-                    movie.coverKey = coverData.key 
+                    movie.coverKey = coverData.key
                 }
                 if(posterData.key) {
-                    movie.posterKey = posterData.key 
+                    movie.posterKey = posterData.key
                 }
                 console.log(movie);
             }catch (err) {
                 console.log(err);
             }
         }
-   }) 
+   })
 })()
 
 ```
+
 报错如下
+
 ```
 C:\Users\z\Desktop\imooc\movie-trailer\server\task\qiniu.js:41
                 const videoData = await uploadToQiniu(movie.video, videoId)
@@ -81,18 +84,20 @@ C:\Users\z\Desktop\imooc\movie-trailer\server\task\qiniu.js:41
 SyntaxError: Unexpected identifier
 
 ```
-查了下mdn的例子,在本机上也能正常运行
+
+查了下 mdn 的例子,在本机上也能正常运行
+
 ```js
 function resolveAfter2Seconds() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('resolved');
+      resolve("resolved");
     }, 2000);
   });
 }
 
 async function asyncCall() {
-  console.log('calling');
+  console.log("calling");
   var result = await resolveAfter2Seconds();
   console.log(result);
   // expected output: 'resolved'
@@ -101,12 +106,12 @@ async function asyncCall() {
 asyncCall();
 ```
 
-找到的原因如下: await只能够在async函数内使用,这里由于await是在map函数传入的参数里面执行的,所以会报错,将map方法改为for循环就可以了.
+找到的原因如下: await 只能够在 async 函数内使用,这里由于 await 是在 map 函数传入的参数里面执行的,所以会报错,将 map 方法改为 for 循环就可以了.
 
+更好的办法是: map 方法里面的函数申明为 async 函数
 
-更好的办法是: map方法里面的函数申明为async函数
 ```js
- movies.map( async movie => {
-     // code here
- })
+movies.map(async movie => {
+  // code here
+});
 ```
