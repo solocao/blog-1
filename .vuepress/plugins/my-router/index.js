@@ -1,4 +1,4 @@
-const routePfx = '/blog/';
+const routePfx = '';
 
 module.exports = {
 	// 文章路径增加前缀 和 评论标识
