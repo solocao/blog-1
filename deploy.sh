@@ -14,7 +14,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f https://${GITHUB_TOKEN}@github.com/chenxiaoyao6228/blog.git master
+git push -f https://${GITHUB_TOKEN}@github.com/chenxiaoyao6228/blog.git master:gh-pages
 
 cd -
 
