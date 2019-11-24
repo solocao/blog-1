@@ -7,6 +7,8 @@
     "@vuepress/plugin-back-to-top": "^1.2.0",
     "@vuepress/plugin-google-analytics": "^1.2.0",
     "@vuepress/plugin-pwa": "^1.2.0",
+    "vuepress-plugin-comment": "^0.5.4",
+    "vuepress-plugin-viewer": "^1.0.0",
     "chalk": "^2.4.2",
     "commander": "^3.0.0",
     "ejs": "^2.7.1",
@@ -16,9 +18,7 @@
     "ora": "^3.4.0",
     "prettier": "^1.17.1",
     "tracer": "^1.0.1",
-    "vuepress": "^1.2.0",
-    "vuepress-plugin-comment": "^0.5.4",
-    "vuepress-plugin-viewer": "^1.0.0"
+    "vuepress": "^1.2.0"
   },
   "scripts": {
     "check": "node bin/prettier.js -t docs -c",
@@ -27,7 +27,7 @@
     "lint:notes": "node bin/prettier.js -t notes -l",
     "start": "npm run dev && vuepress dev .",
     "dev": "node ./bin/sidebar.js && vuepress dev .",
-    "watch": "nodemon --watch docs --exec npm run dev",
+    "watch": "nodemon --watch docs --watch ./vuepress/config --exec npm run dev",
     "build": "node bin/sidebar.js && vuepress build ."
   },
   "repository": {

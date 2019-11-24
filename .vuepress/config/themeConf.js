@@ -19,8 +19,12 @@ module.exports = {
 					text: ' HTML/CSS',
 					link: '/ 2019-06-05-css-specificity/'
 				},
-				{ text: '浏览器', link: '/1/' },
-				{ text: 'Node', link: '/2019-06-02-koa-source-code-analysis/' }
+				{ text: '浏览器&&网络', link: '/1/' },
+				{ text: 'Node', link: '/2019-06-02-koa-source-code-analysis/' },
+				{
+					text: '数据结构与算法',
+					link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/'
+				}
 			]
 		},
 		{
@@ -67,15 +71,6 @@ module.exports = {
 					text: '编程范式&&设计模式',
 					link: '/2019-06-25-rethinking-object-oriented/'
 				},
-				{
-					text: '数据结构与算法',
-					link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/'
-				}
-			]
-		},
-		{
-			text: 'CS笔记',
-			items: [
 				{
 					text: '编译原理',
 					link: '//'
