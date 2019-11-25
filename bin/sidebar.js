@@ -6,7 +6,7 @@ const logger = require('tracer').colorConsole();
 const matter = require('gray-matter');
 
 const docsRoot = path.join(__dirname, '..', 'docs');
-const notesRoot = path.join(__dirname, '..', 'notes');
+// const notesRoot = path.join(__dirname, '..', 'notes');
 const sidebarPath = path.join(
 	__dirname,
 	'..',
@@ -50,14 +50,16 @@ function main() {
 		});
 	});
 
-	const notesJs = mapTocToSidebar(notesRoot);
-	if (notesJs.length) {
-		variables.push({
-			path: '/notes/',
-			name: 'notes',
-			js: notesJs
-		});
-	}
+	// const notesJs = mapTocToSidebar(notesRoot);
+	// if (notesJs.length) {
+	// 	variables.push({
+	// 		path: '/notes/',
+	// 		name: 'notes',
+	// 		js: notesJs
+	// 	});
+	// }
+	fs.writeFileSync('data.json', JSON.stringify(variables));
+
 	fs.writeFileSync(sidebarPath, ejs.render(template, { variables }));
 }
 
@@ -115,7 +117,6 @@ function mapTocToSidebar(root, prefix) {
 			sidebar[uuid] = [prefix + filename, title];
 		}
 	});
-
 	sidebar = sidebar.filter(item => item !== null && item !== undefined);
 
 	return sidebar;
