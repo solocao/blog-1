@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>实现一个简易的javascript测试框架 | 逍遥的前端笔记</title>
+    <meta name="description" content="一枚前端菜鸟的成长日记">
+    
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.69d5b92f.css" as="style"><link rel="preload" href="/blog/assets/js/app.1011c72d.js" as="script"><link rel="preload" href="/blog/assets/js/2.3955396c.js" as="script"><link rel="preload" href="/blog/assets/js/85.c3ff988b.js" as="script"><link rel="preload" href="/blog/assets/js/4.ecddb2a0.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.cd932cf8.js"><link rel="prefetch" href="/blog/assets/js/11.d7ff2d2b.js"><link rel="prefetch" href="/blog/assets/js/12.ead75992.js"><link rel="prefetch" href="/blog/assets/js/13.574509c6.js"><link rel="prefetch" href="/blog/assets/js/14.d9bf14a6.js"><link rel="prefetch" href="/blog/assets/js/15.890994e2.js"><link rel="prefetch" href="/blog/assets/js/16.efd16665.js"><link rel="prefetch" href="/blog/assets/js/17.636bec56.js"><link rel="prefetch" href="/blog/assets/js/18.6085d822.js"><link rel="prefetch" href="/blog/assets/js/19.51972a51.js"><link rel="prefetch" href="/blog/assets/js/20.8d0fdf3b.js"><link rel="prefetch" href="/blog/assets/js/21.b419bb6f.js"><link rel="prefetch" href="/blog/assets/js/22.2fbf524e.js"><link rel="prefetch" href="/blog/assets/js/23.b56d10f4.js"><link rel="prefetch" href="/blog/assets/js/24.2d3b2c73.js"><link rel="prefetch" href="/blog/assets/js/25.121c7134.js"><link rel="prefetch" href="/blog/assets/js/26.dafc95cb.js"><link rel="prefetch" href="/blog/assets/js/27.a4ebb31f.js"><link rel="prefetch" href="/blog/assets/js/28.a48fe245.js"><link rel="prefetch" href="/blog/assets/js/29.6653271e.js"><link rel="prefetch" href="/blog/assets/js/3.015225f6.js"><link rel="prefetch" href="/blog/assets/js/30.dbcaad1d.js"><link rel="prefetch" href="/blog/assets/js/31.6ff1741c.js"><link rel="prefetch" href="/blog/assets/js/32.538ba58f.js"><link rel="prefetch" href="/blog/assets/js/33.d4ad2f7f.js"><link rel="prefetch" href="/blog/assets/js/34.d9d1aa4b.js"><link rel="prefetch" href="/blog/assets/js/35.73dfde2a.js"><link rel="prefetch" href="/blog/assets/js/36.9842a106.js"><link rel="prefetch" href="/blog/assets/js/37.20d44174.js"><link rel="prefetch" href="/blog/assets/js/38.4c58f464.js"><link rel="prefetch" href="/blog/assets/js/39.9c23675c.js"><link rel="prefetch" href="/blog/assets/js/40.5521df18.js"><link rel="prefetch" href="/blog/assets/js/41.f790e99e.js"><link rel="prefetch" href="/blog/assets/js/42.1c905843.js"><link rel="prefetch" href="/blog/assets/js/43.fb2c948d.js"><link rel="prefetch" href="/blog/assets/js/44.70bf3b13.js"><link rel="prefetch" href="/blog/assets/js/45.215fd68b.js"><link rel="prefetch" href="/blog/assets/js/46.ff4a918c.js"><link rel="prefetch" href="/blog/assets/js/47.a42faff6.js"><link rel="prefetch" href="/blog/assets/js/48.051e1fd5.js"><link rel="prefetch" href="/blog/assets/js/49.3c3320da.js"><link rel="prefetch" href="/blog/assets/js/5.aaf58c1d.js"><link rel="prefetch" href="/blog/assets/js/50.b54e927d.js"><link rel="prefetch" href="/blog/assets/js/51.455c85de.js"><link rel="prefetch" href="/blog/assets/js/52.4dcb1df6.js"><link rel="prefetch" href="/blog/assets/js/53.b8bac18b.js"><link rel="prefetch" href="/blog/assets/js/54.d28b4885.js"><link rel="prefetch" href="/blog/assets/js/55.958b0c7a.js"><link rel="prefetch" href="/blog/assets/js/56.48497061.js"><link rel="prefetch" href="/blog/assets/js/57.89471e06.js"><link rel="prefetch" href="/blog/assets/js/58.98e763ad.js"><link rel="prefetch" href="/blog/assets/js/59.61c096e0.js"><link rel="prefetch" href="/blog/assets/js/6.60963b88.js"><link rel="prefetch" href="/blog/assets/js/60.e99d475e.js"><link rel="prefetch" href="/blog/assets/js/61.734178eb.js"><link rel="prefetch" href="/blog/assets/js/62.4df4723f.js"><link rel="prefetch" href="/blog/assets/js/63.29132aaa.js"><link rel="prefetch" href="/blog/assets/js/64.8f5dfa92.js"><link rel="prefetch" href="/blog/assets/js/65.b9371697.js"><link rel="prefetch" href="/blog/assets/js/66.1befb39e.js"><link rel="prefetch" href="/blog/assets/js/67.686736ba.js"><link rel="prefetch" href="/blog/assets/js/68.a6f6e8c5.js"><link rel="prefetch" href="/blog/assets/js/69.29137180.js"><link rel="prefetch" href="/blog/assets/js/7.2405aa00.js"><link rel="prefetch" href="/blog/assets/js/70.242ac9ef.js"><link rel="prefetch" href="/blog/assets/js/71.ab1c77b4.js"><link rel="prefetch" href="/blog/assets/js/72.319d1705.js"><link rel="prefetch" href="/blog/assets/js/73.ee22656a.js"><link rel="prefetch" href="/blog/assets/js/74.a85e5bc8.js"><link rel="prefetch" href="/blog/assets/js/75.6e66ccb5.js"><link rel="prefetch" href="/blog/assets/js/76.37065a3e.js"><link rel="prefetch" href="/blog/assets/js/77.a2385630.js"><link rel="prefetch" href="/blog/assets/js/78.6da0a9b0.js"><link rel="prefetch" href="/blog/assets/js/79.c28c225b.js"><link rel="prefetch" href="/blog/assets/js/8.51afdea2.js"><link rel="prefetch" href="/blog/assets/js/80.fce25e46.js"><link rel="prefetch" href="/blog/assets/js/81.f86e2321.js"><link rel="prefetch" href="/blog/assets/js/82.4331d6a6.js"><link rel="prefetch" href="/blog/assets/js/83.ac05ef57.js"><link rel="prefetch" href="/blog/assets/js/84.ebd1a266.js"><link rel="prefetch" href="/blog/assets/js/86.89b092e5.js"><link rel="prefetch" href="/blog/assets/js/87.1af08461.js"><link rel="prefetch" href="/blog/assets/js/88.e72e1a8c.js"><link rel="prefetch" href="/blog/assets/js/89.be8bc4ca.js"><link rel="prefetch" href="/blog/assets/js/9.ada81e33.js"><link rel="prefetch" href="/blog/assets/js/90.2948c9d6.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.69d5b92f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">逍遥的前端笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端基础" class="dropdown-title"><span class="title">前端基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-10-javascript-inheritance-1/" class="nav-link">Javascript</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-05-css-specificity/" class="nav-link"> HTML/CSS</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-09-13-leetcode-4-median-of-two-sorted-arrays/" class="nav-link">数据结构与算法</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-01-react-props-children/" class="nav-link">React</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-07-13-build-your-own-angular-0-project-setup/" class="nav-link">AngularJS</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-28-underscore-analysis-1/" class="nav-link">Underscore</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-05-28-how-does-vue-cli-work/" class="nav-link">工具使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-24-async-function-Unexpected-identifier/" class="nav-link">踩坑汇总</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-05-30-just-do-it/" class="nav-link">杂谈</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-25-rethinking-object-oriented/" class="nav-link">编程范式&amp;&amp;设计模式</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端基础" class="dropdown-title"><span class="title">前端基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-10-javascript-inheritance-1/" class="nav-link">Javascript</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-05-css-specificity/" class="nav-link"> HTML/CSS</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-09-13-leetcode-4-median-of-two-sorted-arrays/" class="nav-link">数据结构与算法</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-01-react-props-children/" class="nav-link">React</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-07-13-build-your-own-angular-0-project-setup/" class="nav-link">AngularJS</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-28-underscore-analysis-1/" class="nav-link">Underscore</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-05-28-how-does-vue-cli-work/" class="nav-link">工具使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/2019-06-24-async-function-Unexpected-identifier/" class="nav-link">踩坑汇总</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-05-30-just-do-it/" class="nav-link">杂谈</a></li><li class="dropdown-item"><!----> <a href="/blog/2019-06-25-rethinking-object-oriented/" class="nav-link">编程范式&amp;&amp;设计模式</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>AngularJS</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/2019-07-13-build-your-own-angular-1-scope/" class="sidebar-link">实现angluar手记[一]scope和digest</a></li><li><a href="/blog/2019-07-13-build-your-own-angular-0-project-setup/" class="sidebar-link">实现angluar手记[零]项目初始化</a></li><li><a href="/blog/2019-07-15-build-your-own-angular-2-scope-inheritance/" class="sidebar-link">实现angluar手记[二]scope继承</a></li><li><a href="/blog/2019-07-16-build-your-own-angular-literal-expressions/" class="sidebar-link">实现angluar[手记五]编译字面量表达式</a></li><li><a href="/blog/2019-07-16-build-your-own-angular-events/" class="sidebar-link">实现angluar手记[四]事件系统</a></li><li><a href="/blog/2019-07-17-build-your-own-angular-property-lookup/" class="sidebar-link">实现angluar手记[六]属性查找和函数调用</a></li><li><a href="/blog/2019-07-20-build-your-own-angular-operator-expression/" class="sidebar-link">实现angluar手记[七]操作符表达式</a></li><li><a href="/blog/2019-07-20-build-your-own-angular-cp9-expressions-and-watches/" class="sidebar-link">实现angluar手记[九]表达式与watcher结合</a></li><li><a href="/blog/2019-07-20-build-your-own-angular-cp8-filters/" class="sidebar-link">实现angluar手记[八]过滤器</a></li><li><a href="/blog/2019-07-25-build-your-own-angular-cp10-module-injection/" class="sidebar-link">实现angluar手记[十]模块与依赖注入</a></li><li><a href="/blog/2019-07-28-a-quick-intro-to-dependency-injection/" class="sidebar-link">(译)浅谈依赖注入</a></li><li><a href="/blog/2019-07-29-a-simple-di-framework/" class="sidebar-link">实现一个简易的依赖注入框架</a></li><li><a href="/blog/2019-07-30-angular-tutorial/" class="sidebar-link">angularJS入门</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>React</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/2019-06-01-react-props-children/" class="sidebar-link">学习之理解children</a></li><li><a href="/blog/2019-07-13-build-a-simple-redux/" class="sidebar-link">实现一个简易的redux</a></li><li><a href="/blog/2019-10-23-react-dnd-with-hooks/" class="sidebar-link">使用React实现拖拽组件</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>underscore</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/2019-06-28-underscore-analysis-1/" class="sidebar-link">underscore源码学习笔记(一)如何读underscore源码</a></li><li><a href="/blog/2019-06-28-underscore-analysis-3-initialization/" class="sidebar-link">underscore源码学习笔记(三)初始化以及两种调用方式</a></li><li><a href="/blog/2019-06-28-underscore-analysis-2-some-helper-functions/" class="sidebar-link">underscore源码学习笔记(二)几个helper函数</a></li><li><a href="/blog/2019-06-28-underscore-analysis-5-array-related-method/" class="sidebar-link">underscore源码学习笔记(五)Array相关的方法</a></li><li><a href="/blog/2019-06-28-underscore-analysis-6-implement-bind/" class="sidebar-link">underscore源码学习笔记(六)实现bind,call, apply</a></li><li><a href="/blog/2019-06-28-underscore-analysis-4-collection-related-method/" class="sidebar-link">underscore源码学习笔记(四)collction相关方法</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>工具使用</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/2019-05-28-how-does-vue-cli-work/" class="sidebar-link">vue-cli等脚手架工具是如何跑起来的</a></li><li><a href="/blog/2019-05-29-implement-a-cli-tool/" class="sidebar-link">实现一个cli工具</a></li><li><a href="/blog/2019-06-30-implement-a-simple-wbpack/" class="sidebar-link">实现一个简易webpack</a></li><li><a href="/blog/2019-07-12-better-commit/" class="sidebar-link">代码提交规范</a></li><li><a href="/blog/2019-07-13-what-is-a-javascript-test/" class="active sidebar-link">实现一个简易的javascript测试框架</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#第一步" class="sidebar-link">第一步</a></li><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#第二步" class="sidebar-link">第二步</a></li><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#第三步" class="sidebar-link">第三步</a></li><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#第四步" class="sidebar-link">第四步</a></li><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#第五步" class="sidebar-link">第五步</a></li><li class="sidebar-sub-header"><a href="/blog/2019-07-13-what-is-a-javascript-test/#结论" class="sidebar-link">结论</a></li></ul></li><li><a href="/blog/2019-09-17-vscode-tricks/" class="sidebar-link">vscode插件以及使用技巧(持续更新)</a></li><li><a href="/blog/2019-10-07-refactoring-nested-condition-statement/" class="sidebar-link">重构手法之使用卫语句移除嵌套条件语句</a></li><li><a href="/blog/2019-10-29-markdown-with-vscode/" class="sidebar-link">在vscode上进行markdown写作</a></li><li><a href="/blog/2019-11-25-build-your-website-with-vuepress/" class="sidebar-link">使用vuepress搭建静态网站</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>进行软件测试的原因有很多, 对于我而言有两个</p> <ol><li>提升软件开发的效率</li> <li>在进行代码修改的时候确保不破坏现有的代码</li></ol> <p>那么问题来了</p> <ul><li>你是否写过 Javascript 测试</li> <li>你用过那些 Javacript 测试框架</li> <li>你是否有从零搭建测试环境的经历</li> <li>你是否深入理解测试框架, 并且能自己实现最小功能集合的框架</li></ul> <p>如果你的回答是否也不要紧, 希望阅读本文之后你能够对 Javascript 测试有一定见解, 写出更好的测试用例</p> <p>我们先从为一个简单的 math.js 写测试开始</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const sum = (a, b) =&gt; a + b
+const subtract = (a, b) =&gt; a - b
+module.exports = {sum, subtract}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="第一步"><a href="#第一步" class="header-anchor">#</a> 第一步</h2> <p>以下是我能想出的最简单的测试用例</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// basic-test.js
+const atual = true
+const expected = false
+if(actual !== expected) {
+    throw new Error(`${atual is not ${expected}`)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>你可以通过运行 node basic-test.js 来测试其中的代码</p> <p>有了上面的例子, 我们很容易理解什么是测试用例</p> <blockquote><p>测试用例, 就是一段当实际结果不符合预期时候抛出异常的一段代码</p></blockquote> <p>当需要测试的代码需要建立某些状态(比如一个组件在进行事件点击之前需要先渲染出来或者数据需要从数据库中提前取出的时候), 事情会变得稍微复杂一些, 但是, 类似上面 math.js 的&quot;纯函数&quot;(对于相同的输入总是能够返回相同的结果,并且不更改其他地方的状态)是很容易测试的</p> <p><strong>actual !== expected</strong>的部分称为<strong>断言(assertion)</strong>, 要通过测试, 实际的输出值要和预期的值一致. 断言的形式多样, 可以是实际值匹配某条正则规则, 或是数组满足特定长度, 总之如果断言失败, 就会抛出异常.</p> <p>接下来我们为 math.js 写一段最简单的测试</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 1.js
+const {sum, subtract} = require('./math')
+let result, expected
+result = sum(3, 7)
+expected = 10
+if (result !== expected) {
+  throw new Error(`${result} is not equal to ${expected}`)
+}
+result = subtract(7, 3)
+expected = 4
+if (result !== expected) {
+  throw new Error(`${result} is not equal to ${expected}`)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>我们通过命令行运行<strong>node 1.js</strong>, 发现测试通过, 没有抛出异常, 但如果我们把+变成-号, 再次运行上述代码, 我们会看到以下信息</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ node 1.js
+/Users/kdodds/Desktop/js-test-example/1.js:8
+  throw new Error(`${result} is not equal to ${expected}`)
+  ^
+Error: -4 is not equal to 10
+    at Object.&lt;anonymous&gt; (/Users/kdodds/Desktop/js-test-example/1.js:8:9)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>好极了, 我们现在已经有了最基本的测试用例, <strong>对于测试框架(或者断言库)而言,错误信息是及其重要的</strong>,当我们的测试不通过的时候, 第一眼看到的就是错误信息, 如果你不能立即从错误信息判断出哪处代码出现了问题,势必浪费时间. 很多时候, 错误信息的质量取决于你对正在使用的测试框架提供的断言库的理解程度.</p> <h2 id="第二步"><a href="#第二步" class="header-anchor">#</a> 第二步</h2> <p>实际上, node.js 中有一个和上述功能相似的<a href="https://nodejs.org/api/assert.html#assert_assert" target="_blank" rel="noopener noreferrer">断言模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, 我们可以使用该模块对我们的代码进行重构</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 2.js
+const assert = require('assert')
+const {sum, subtract} = require('./math')
+let result, expected
+result = sum(3, 7)
+expected = 10
+assert.strictEqual(result, expected)
+result = subtract(7, 3)
+expected = 4
+assert.strictEqual(result, expected)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>好极了, 经过重构的测试模块功能一样, 但错误信息却稍微不同</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ node 2.js
+assert.js:42
+  throw new errors.AssertionError({
+  ^
+AssertionError [ERR_ASSERTION]: -4 === 10
+    at Object.&lt;anonymous&gt; (/Users/kdodds/Desktop/js-test-example/2.js:8:8)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="第三步"><a href="#第三步" class="header-anchor">#</a> 第三步</h2> <p>我们可以通过上述的例子来打造属于自己的&quot;测试框架&quot;和&quot;断言库&quot;. 我们先从断言库开始. 这次我们不使用 node 的 assert 模块, 相反, 我们创建一个 expect 的模块</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 3.js
+const {sum, subtract} = require('./math')
+let result, expected
+
+result = sum(3, 7)
+expected = 10
+expect(result).toBe(expected)
+
+result = subtract(7, 3)
+expected = 4
+expect(result).toBe(expected)
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}`)
+      }
+    },
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>我们可以在 expecet 对象上添加许多断言方法(如 toMatchRegex 或 toHaveLength), 运行上述代码, 得到下列错误信息</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ node 3.js
+/Users/kdodds/Desktop/js-test-example/3.js:17
+        throw new Error(`${actual} is not equal to ${expected}`)
+        ^
+Error: -4 is not equal to 10
+    at Object.toBe (/Users/kdodds/Desktop/js-test-example/3.js:17:15)
+    at Object.&lt;anonymous&gt; (/Users/kdodds/Desktop/js-test-example/3.js:7:16)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>一切看起来还不错</p> <h2 id="第四步"><a href="#第四步" class="header-anchor">#</a> 第四步</h2> <p>上面的实现存在一个问题, 那就是因为现在的错误信息只告诉我们 expect 函数中的 actual !== expected 条件没有被满足, 但如何知道哪一个断言出了错, 也可能是 substract 模块出了问题, 并且, 我们的测试并没有对测试进行归类,这样当测试用例一多, 就会出混乱不堪</p> <p>我们可以使用 helper 函数来解决问题</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 4.js
+const {sum, subtract} = require('./math')
+test('sum adds numbers', () =&gt; {
+  const result = sum(3, 7)
+  const expected = 10
+  expect(result).toBe(expected)
+})
+test('subtract subtracts numbers', () =&gt; {
+  const result = subtract(7, 3)
+  const expected = 4
+  expect(result).toBe(expected)
+})
+
+function test(title, callback) {
+  try {
+    callback()
+    console.log(`✓ ${title}`)
+  } catch (error) {
+    console.error(`✕ ${title}`)
+    console.error(error)
+  }
+}
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}`)
+      }
+    },
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>有了上面的 test 方法, 我们就可以将相关的测试合并到一起, 加以命名区分, 并且给出来的错误信息更加具体, 同时当某用例不通过的时候, 代码也不会终止执行, 而是执行完所有的测试用例. 下面是我们的输出的错误信息</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ node 4.js
+✕ sum adds numbers
+Error: -4 is not equal to 10
+    at Object.toBe (/Users/kdodds/Desktop/js-test-example/4.js:29:15)
+    at test (/Users/kdodds/Desktop/js-test-example/4.js:6:18)
+    at test (/Users/kdodds/Desktop/js-test-example/4.js:17:5)
+    at Object.&lt;anonymous&gt; (/Users/kdodds/Desktop/js-test-example/4.js:3:1)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Function.Module.runMain (module.js:676:10)
+✓ subtract subtracts numbers
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>有了 title, 我们很容易找到对应的错误代码, 予以修正.</p> <h2 id="第五步"><a href="#第五步" class="header-anchor">#</a> 第五步</h2> <p>现在我们需要做的就是写一个简单的 cli 工具,搜索我们的所有测试用例并执行.当然我们还可以在现有的基础上添加其他的功能</p> <p>行文至此, 我们已经建立了一个简单的测试框架了.幸运的是, 社区中已经有了许多优秀的实现, 比如来自 facebook 的<a href="https://jestjs.io/" target="_blank" rel="noopener noreferrer">jest.js<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>我们用 jest 来重构上面的代码, 我们需要做的, 就是用 jest 的 test 和 expect 函数来替换我们的 test 和 expect 函数,</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 5.js
+const {sum, subtract} = require('./math')
+test('sum adds numbers', () =&gt; {
+  const result = sum(3, 7)
+  const expected = 10
+  expect(result).toBe(expected)
+})
+test('subtract subtracts numbers', () =&gt; {
+  const result = subtract(7, 3)
+  const expected = 4
+  expect(result).toBe(expected)
+})
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>运行上述代码, 会得到下列的错误信息</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ jest
+ FAIL  ./5.js
+  ✕ sum adds numbers (5ms)
+  ✓ subtract subtracts numbers (1ms)
+● sum adds numbers
+expect(received).toBe(expected)
+    Expected value to be (using Object.is):
+      10
+    Received:
+      -4
+      4 |   const result = sum(3, 7)
+      5 |   const expected = 10
+    &gt; 6 |   expect(result).toBe(expected)
+      7 | })
+      8 |
+      9 | test('subtract subtracts numbers', () =&gt; {
+      at Object.&lt;anonymous&gt;.test (5.js:6:18)
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.6s, estimated 1s
+Ran all test suites.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>文字看起来有些不清楚, 实际上输出的结果是彩色的</p> <p><img src="https://kentcdodds.com/static/509c08a8fd5d6a2516e3b85fbe8b4213/8ff1e/0.png" alt="jest-output"></p> <p>可以看到, jest 输出的错误信息更加一目了然</p> <h2 id="结论"><a href="#结论" class="header-anchor">#</a> 结论</h2> <p>我们还没有谈及一些 jest 中其他高级的功能, 如<a href="https://jestjs.io/docs/en/api.html#beforeeachfn-timeout" target="_blank" rel="noopener noreferrer">beforeEach<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>或是<a href="https://jestjs.io/docs/en/api.html#describename-fn" target="_blank" rel="noopener noreferrer">describe<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, 以及其他的断言形式, 如<a href="https://jestjs.io/docs/en/expect.html#tomatchobjectobject" target="_blank" rel="noopener noreferrer">toMatchObject<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>或是<a href="https://jestjs.io/docs/en/expect.html#tocontainitem" target="_blank" rel="noopener noreferrer">toContain<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, 但希望通过本文你已经对 javascript 测试有了一定的理解</p> <p>感谢阅读!</p> <p>本文翻译自 kentcdodds 的<a href="https://kentcdodds.com/blog/but-really-what-is-a-javascript-test" target="_blank" rel="noopener noreferrer">《But really, what is a JavaScript test?》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, 其中加入了自己的理解, 水平有限,不足之处还望高手指出, 版权归原作者所有</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新于:</span> <span class="time">2019-11-25 01:36:28</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/2019-07-12-better-commit/" class="prev">代码提交规范</a></span> <span class="next"><a href="/blog/2019-09-17-vscode-tricks/">vscode插件以及使用技巧(持续更新)</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div class="my-loader center" style="display:none;" data-v-45632a08><div class="my-loader-circle" data-v-45632a08></div></div><div class="my-popup" style="display:none;" data-v-3414bdeb><div class="my-popup-container" data-v-3414bdeb><div class="my-popup-exit" data-v-3414bdeb></div> <img src="" alt data-v-3414bdeb></div></div><!----><!----><div></div></div></div>
+    <script src="/blog/assets/js/app.1011c72d.js" defer></script><script src="/blog/assets/js/2.3955396c.js" defer></script><script src="/blog/assets/js/85.c3ff988b.js" defer></script><script src="/blog/assets/js/4.ecddb2a0.js" defer></script>
+  </body>
+</html>
