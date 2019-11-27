@@ -1,0 +1,54 @@
+---
+layout: fexo
+title: 实现react-router
+date: 2019-06-15T06:10:48.000Z
+tags:
+  - 代码
+  - 前端
+  - react
+permalink: 2019-06-15-实现react-router
+---
+
+## 路由的原理
+路由的实现有两种方式， 一种是老式的基于location.hash路由，兼容绝大部分浏览器， 一种是基于history api的新式路由。
+### location
+[location](https://developer.mozilla.org/en-US/docs/Web/API/Location)对象上挂载了很多的属性，可以很方便地对当前的url进行处理
+* 路由获取： hash路由根据loaction.hash可以拿到当前的路由进行判断，
+* 路由跳转：通过location.replace， location.assign， replace和assign的区别在于replace无法实现回退功能
+* 路由事件监听： 通过[onHashChange](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onhashchange)事件添加回调
+```js
+function hashHandler() {
+  console.log('The hash has changed!');
+  // 进行其他操作...
+}
+
+window.addEventListener('hashchange', hashHandler, false);  
+```
+### History Api
+[history](https://developer.mozilla.org/en-US/docs/Web/API/History)
+* 当前状态获取: history.state
+* 路由跳转：history.pushState/replaceState以及go, back方法
+* 路由事件监听： [window.onpopstate](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate)
+```js
+window.onpopstate = function(event) {
+  alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+};
+
+history.pushState({page: 1}, "title 1", "?page=1");
+history.pushState({page: 2}, "title 2", "?page=2");
+history.replaceState({page: 3}, "title 3", "?page=3");
+history.back(); // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
+history.back(); // alerts "location: http://example.com/example.html, state: null
+history.go(2);  // alerts "location: http://example.com/example.html?page=3, state: {"page":3}
+
+```
+## React-router基本使用
+[官方的quick start](https://reacttraining.com/react-router/web/guides/quick-start)
+
+主要api:
+* Router: 包裹组件， 全局传值
+* 触发跳转： Link组件, to匹配path提示跳转, component指明要加载的组件
+* 监听跳转变化：Route组件 path匹配link中的to
+* 单一匹配： Switch, 只匹配第一个组件， 其余的忽略
+
+## React-router的简易实现
