@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "逍遥的前端笔记",
+  "description": "前端漫漫长路",
   "main": "index.js",
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.2.0",
@@ -19,19 +19,20 @@
     "tracer": "^1.0.1",
     "valine": "^1.3.10",
     "vuepress": "^1.2.0",
-    "vuepress-plugin-comment": "^0.5.4",
+    "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-viewer": "^1.0.0"
   },
   "scripts": {
     "check": "node bin/prettier.js -t docs -c",
     "lint": "node bin/prettier.js -t docs -l",
-    "check:notes": "node bin/prettier.js -t notes -c",
-    "lint:notes": "node bin/prettier.js -t notes -l",
+    "check:drafts": "node bin/prettier.js -t drafts -c",
+    "lint:drafts": "node bin/prettier.js -t drafts -l",
     "start": "npm run dev && vuepress dev .",
     "dev": "node ./bin/sidebar.js && vuepress dev .",
     "watch": "nodemon --watch docs --watch ./vuepress --exec npm run dev",
     "build": "node bin/sidebar.js && vuepress build .",
-    "build:debug": "node bin/sidebar.js && vuepress build . --debug"
+    "build:debug": "node bin/sidebar.js && vuepress build . --debug",
+    "deploy": "sh deploy.sh"
   },
   "repository": {
     "type": "git",

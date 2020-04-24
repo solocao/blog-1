@@ -1,7 +1,6 @@
 const { mdConf, themeConf, localesConf } = require('./config/');
 
 module.exports = {
-	base: '/blog/',
 	locales: localesConf,
 	markdown: mdConf,
 	themeConfig: themeConf,
