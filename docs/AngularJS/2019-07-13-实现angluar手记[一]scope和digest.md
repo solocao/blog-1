@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: "实现angluar手记[一]scope和digest"
 date: 2019-07-13T23:24:14.000Z
 tags:

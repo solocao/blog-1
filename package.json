@@ -23,6 +23,7 @@
     "vuepress-plugin-viewer": "^1.0.0"
   },
   "scripts": {
+    "new": "chmod +x bin/new.js",
     "dev": "nodemon --watch docs --watch ./vuepress --exec npm run generate",
     "build": "node bin/sidebar.js && vuepress build .",
     "build:debug": "node bin/sidebar.js && vuepress build . --debug",

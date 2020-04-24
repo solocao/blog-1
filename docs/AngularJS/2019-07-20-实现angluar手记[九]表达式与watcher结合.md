@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: "实现angluar手记[九]表达式与watcher结合"
 date: 2019-07-21T08:28:16.000Z
 tags:

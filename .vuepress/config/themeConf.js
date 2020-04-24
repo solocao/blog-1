@@ -9,7 +9,6 @@ module.exports = {
 	nav: [
 		// 路由跳转根据的是md文件中的permalink属性
 		// 可以使用loader来动态改变permalink属性, 添加prefix,参见loader.js
-		// sidebar呢?
 		{
 			text: 'React',
 			link: '/2019-06-01-react-props-children/'
@@ -47,20 +46,12 @@ module.exports = {
 					link: '/2019-07-13-build-your-own-angular-0-project-setup/'
 				},
 				{
-					text: 'Underscore',
-					link: '/2019-06-28-underscore-analysis-1/'
-				},
-				{
 					text: '工具使用',
 					link: '/2019-05-28-how-does-vue-cli-work/'
 				},
 				{
 					text: '踩坑汇总',
 					link: '/2019-06-24-async-function-Unexpected-identifier/'
-				},
-				{
-					text: '杂谈',
-					link: '/2019-05-30-just-do-it/'
 				},
 				{
 					text: '编程范式&&设计模式',

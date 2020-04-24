@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: javascript实现继承的多种方式
 date: 2019-06-10T23:56:49.000Z
 tags:

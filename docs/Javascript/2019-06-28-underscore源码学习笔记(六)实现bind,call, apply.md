@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: "underscore源码学习笔记(六)实现bind,call, apply"
 date: 2019-06-28T16:27:31.000Z
 tags: null

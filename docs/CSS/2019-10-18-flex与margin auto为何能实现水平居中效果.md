@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: flex与margin auto为何能实现水平居中效果
 date: 2019-10-18T23:20:44.000Z
 tags:

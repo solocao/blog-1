@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: "实现angluar手记[二]scope继承"
 date: 2019-07-15T02:53:50.000Z
 tags:

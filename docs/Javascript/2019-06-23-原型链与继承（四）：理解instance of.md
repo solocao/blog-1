@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: 原型链与继承（四）：理解instance of
 date: 2019-06-23T17:07:04.000Z
 tags: null

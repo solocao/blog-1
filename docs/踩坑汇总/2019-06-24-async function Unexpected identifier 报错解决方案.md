@@ -1,5 +1,4 @@
 ---
-layout: fexo
 title: async function Unexpected identifier 报错解决方案
 date: 2019-06-24T16:58:34.000Z
 tags: null
@@ -89,15 +88,15 @@ SyntaxError: Unexpected identifier
 
 ```js
 function resolveAfter2Seconds() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("resolved");
+      resolve('resolved');
     }, 2000);
   });
 }
 
 async function asyncCall() {
-  console.log("calling");
+  console.log('calling');
   var result = await resolveAfter2Seconds();
   console.log(result);
   // expected output: 'resolved'
@@ -111,7 +110,7 @@ asyncCall();
 更好的办法是: map 方法里面的函数申明为 async 函数
 
 ```js
-movies.map(async movie => {
+movies.map(async (movie) => {
   // code here
 });
 ```

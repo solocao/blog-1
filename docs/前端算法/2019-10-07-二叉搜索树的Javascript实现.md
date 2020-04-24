@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: 二叉搜索树的Javascript实现
 date: 2019-10-07T08:53:46.000Z
 tags: null

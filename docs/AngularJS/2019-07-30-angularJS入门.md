@@ -1,5 +1,5 @@
 ---
-layout: fexo
+
 title: angularJS入门
 date: 2019-07-30T18:27:55.000Z
 tags: null
