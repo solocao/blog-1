@@ -20,11 +20,11 @@ module.exports = {
 		},
 		{
 			text: 'Uniapp/小程序',
-			link: '/1/'
+			link: '/2020-04-01-qq-miniprogram/'
 		},		
 		{
 			text: 'Javascript',
-			link: '/1/'
+			link: '/2019-06-10-javascript-inheritance-1/'
 		},
 
 		{

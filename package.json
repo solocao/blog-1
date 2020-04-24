@@ -23,15 +23,14 @@
     "vuepress-plugin-viewer": "^1.0.0"
   },
   "scripts": {
+    "dev": "nodemon --watch docs --watch ./vuepress --exec npm run generate",
+    "build": "node bin/sidebar.js && vuepress build .",
+    "build:debug": "node bin/sidebar.js && vuepress build . --debug",
     "check": "node bin/prettier.js -t docs -c",
     "lint": "node bin/prettier.js -t docs -l",
     "check:drafts": "node bin/prettier.js -t drafts -c",
     "lint:drafts": "node bin/prettier.js -t drafts -l",
-    "start": "npm run dev && vuepress dev .",
-    "dev": "node ./bin/sidebar.js && vuepress dev .",
-    "watch": "nodemon --watch docs --watch ./vuepress --exec npm run dev",
-    "build": "node bin/sidebar.js && vuepress build .",
-    "build:debug": "node bin/sidebar.js && vuepress build . --debug",
+    "generate": "node ./bin/sidebar.js  && vuepress dev .",
     "deploy": "sh deploy.sh"
   },
   "repository": {
