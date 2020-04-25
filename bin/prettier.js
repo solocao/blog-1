@@ -2,30 +2,27 @@ const fs = require('fs')
 const path = require('path')
 
 const prettier = require('prettier')
-const program = require("commander")
+const program = require('commander')
 const chalk = require('chalk')
 const ora = require('ora')
 
 const pkgJson = require('./../package.json')
 const print = console.log
 
-program
-  .version(pkgJson.version)
+program.version(pkgJson.version)
 
 program
   .option('-t, --target <folder>', 'target folder')
   .option('-c, --check', 'check code formatter')
   .option('-l, --lint', 'lint code formatter')
-  
+
 program.parse(process.argv)
 
 let files = []
 
 if (program.target) {
-  files = 
-    readDir(program.target)
-    .filter(file => file.path.endsWith('.md'))
-  
+  files = readDir(program.target).filter((file) => file.path.endsWith('.md'))
+
   if (!files.length) {
     print(chalk.grey('INFO: no markdown found'))
     process.exit(0)
@@ -36,11 +33,11 @@ if (program.target) {
 }
 
 if (program.lint || program.check) {
-  files.forEach(file => {
+  files.forEach((file) => {
     const { path, content } = file
     process.stdout.write('\b'.repeat(10000))
     process.stdout.write(chalk.grey(`INFO: check ${path}`))
-    
+
     const valid = prettier.check(content, { filepath: path })
     file.check = valid
 
@@ -54,7 +51,7 @@ if (program.lint || program.check) {
 }
 
 if (program.lint) {
-  files.forEach(file => {
+  files.forEach((file) => {
     const { content, check, path } = file
     if (check) {
       print(chalk.grey(`INFO: lint ${path}`))
@@ -69,7 +66,6 @@ if (program.lint) {
 
   print(chalk.green('SUCCESS: all files linted'))
 }
-
 
 /**
  * 是否是文件夹
@@ -93,10 +89,10 @@ function readDir(folder) {
   const result = []
   findAllFiles(fs.realpathSync(folder))
   return result
-  
+
   function findAllFiles(root) {
     const files = fs.readdirSync(root)
-    files.forEach(name => {
+    files.forEach((name) => {
       const file = path.resolve(root, name)
       if (isFolder(file)) {
         findAllFiles(file)
@@ -104,7 +100,7 @@ function readDir(folder) {
         result.push({
           path: file,
           check: false,
-          content: fs.readFileSync(file).toString()
+          content: fs.readFileSync(file).toString(),
         })
       }
     })
