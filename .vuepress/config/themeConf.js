@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       text: 'Vue',
-      link: '/2020-04-14-differences-between-v-if-v-show/',
+      link: '/2020-05-12-Vue中使用mixin.md/',
     },
     {
       text: 'Angular',

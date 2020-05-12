@@ -5,7 +5,7 @@ let name = process.argv[2] ? process.argv[2] : '文章名'
 let now = new Date()
 let year = now.getFullYear()
 let month = prependZero(now.getMonth() + 1)
-let day = prependZero(now.getDay())
+let day = prependZero(now.getDate())
 let dayString = year + '-' + month + '-' + day
 let fileName = dayString + '-' + name + '.md'
 
@@ -33,5 +33,6 @@ fs.writeFileSync(absPath, template, { flag: 'wx' }, (err) => {
 })
 
 function prependZero(num) {
+  console.log('typeof num', typeof num);
   return num < 10 ? '0' + num : num
 }
