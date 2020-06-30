@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "逍遥的前端笔记",
+  "description": "前端漫漫长路",
   "main": "index.js",
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.2.0",
@@ -15,23 +15,26 @@
     "leancloud-storage": "^4.0.0",
     "nodemon": "^1.19.2",
     "ora": "^3.4.0",
-    "prettier": "^1.17.1",
+    "prettier": "^2.0.5",
+    "qiniu": "^7.3.0",
     "tracer": "^1.0.1",
     "valine": "^1.3.10",
     "vuepress": "^1.2.0",
-    "vuepress-plugin-comment": "^0.5.4",
+    "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-viewer": "^1.0.0"
   },
   "scripts": {
+    "new": "chmod +x bin/new.js",
+    "dev": "nodemon --watch docs --watch ./vuepress --exec npm run generate",
+    "build": "node bin/sidebar.js && vuepress build .",
+    "build:debug": "node bin/sidebar.js && vuepress build . --debug",
     "check": "node bin/prettier.js -t docs -c",
     "lint": "node bin/prettier.js -t docs -l",
-    "check:notes": "node bin/prettier.js -t notes -c",
-    "lint:notes": "node bin/prettier.js -t notes -l",
-    "start": "npm run dev && vuepress dev .",
-    "dev": "node ./bin/sidebar.js && vuepress dev .",
-    "watch": "nodemon --watch docs --watch ./vuepress --exec npm run dev",
-    "build": "node bin/sidebar.js && vuepress build .",
-    "build:debug": "node bin/sidebar.js && vuepress build . --debug"
+    "format": "./node_modules/.bin/prettier-eslint \"src/**/*.js\"",
+    "check:drafts": "node bin/prettier.js -t drafts -c",
+    "lint:drafts": "node bin/prettier.js -t drafts -l",
+    "generate": "node ./bin/sidebar.js  && vuepress dev .",
+    "deploy": "sh deploy.sh"
   },
   "repository": {
     "type": "git",
@@ -44,7 +47,16 @@
   "author": "ChenXiaoyao <chenxiaoyao6228@163.com> (http://www.chenxiaoyao.cn/)",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
     "markdown-yaml-metadata-parser": "^2.0.3",
+    "prettier-eslint": "^9.0.1",
+    "vuepress-plugin-social-share": "^0.2.1",
     "yaml-front-matter": "^4.0.0"
   }
 }

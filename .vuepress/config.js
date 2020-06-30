@@ -1,11 +1,11 @@
 const { mdConf, themeConf, localesConf } = require('./config/');
 
 module.exports = {
-	base: '/blog/',
 	locales: localesConf,
 	markdown: mdConf,
 	themeConfig: themeConf,
 	plugins: [
+		'social-share',
 		require('./plugins/my-router'), // 自定义路由跳转
 		require('./plugins/my-loader'), // 自定义加载进度条
 		require('vuepress-plugin-viewer'),

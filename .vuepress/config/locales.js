@@ -1,7 +1,7 @@
 module.exports = {
 	'/': {
 		lang: 'zh-CN',
-		title: '逍遥的前端笔记',
+		title: '前端漫漫长路',
 		description: '一枚前端菜鸟的成长日记'
 	}
 };
