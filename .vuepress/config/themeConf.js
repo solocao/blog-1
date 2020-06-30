@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       text: 'Vue',
-      link: '/2020-05-12-Vue中使用mixin.md/',
+      link: '/2020-05-12-using-mixin-in-vue/',
     },
     {
       text: 'Angular',
