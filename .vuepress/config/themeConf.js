@@ -22,8 +22,8 @@ module.exports = {
       link: '/2019-07-13-build-your-own-angular-0-project-setup/',
     },
     {
-      text: 'Uniapp/小程序',
-      link: '/2020-04-01-qq-miniprogram/',
+      text: '跨端开发',
+      link: '/2020-06-30-Electron-dynamically-pack-with-params/',
     },
     {
       text: 'Javascript',
@@ -40,6 +40,10 @@ module.exports = {
     },
     {
       text: 'Node/工具',
+      link: '/2019-06-02-koa-source-code-analysis/',
+    },
+    {
+      text: '程序人生',
       link: '/2019-06-02-koa-source-code-analysis/',
     },
     {
