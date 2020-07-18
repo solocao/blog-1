@@ -10,6 +10,10 @@ module.exports = {
     // 路由跳转根据的是md文件中的permalink属性
     // 可以使用loader来动态改变permalink属性, 添加prefix,参见loader.js
     {
+      text: ' HTML/CSS',
+      link: '/2019-06-05-css-specificity/',
+    },
+    {
       text: 'React',
       link: '/2019-06-01-react-props-children/',
     },
@@ -30,10 +34,6 @@ module.exports = {
       link: '/2019-06-10-javascript-inheritance-1/',
     },
 
-    {
-      text: ' HTML/CSS',
-      link: '/2019-06-05-css-specificity/',
-    },
     {
       text: '前端算法',
       link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/',
