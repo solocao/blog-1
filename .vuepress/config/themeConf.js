@@ -42,10 +42,10 @@ module.exports = {
       text: 'Node/工具',
       link: '/2019-06-02-koa-source-code-analysis/',
     },
-    {
-      text: '程序人生',
-      link: '/2019-06-02-koa-source-code-analysis/',
-    },
+    // {
+    //   text: '程序人生',
+    //   link: '/2019-06-02-koa-source-code-analysis/',
+    // },
     {
       text: 'Github',
       link: 'https://github.com/chenxiaoyao6228',
