@@ -1,5 +1,5 @@
 ---
-home: true
+home: false
 comment: false
 single: true
 heroImage: './edit-tools.png'
