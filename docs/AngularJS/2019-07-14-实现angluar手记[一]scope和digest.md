@@ -1,10 +1,9 @@
 ---
-
-title: "实现angluar手记[一]scope和digest"
-date: 2019-07-13T23:24:14.000Z
+title: '实现angluar手记[一]scope和digest'
+date: 2019-07-14
 tags:
   - angular
-permalink: 2019-07-13-build-your-own-angular-1-scope
+permalink: 2019-07-14-build-your-own-angular-1-scope
 ---
 
 ## Scope
@@ -21,18 +20,18 @@ angular1 使用的是"脏检查"机制来实现数据的双向绑定, 第一章�
 使用的是观察者模式, scope 中保存一个\$$watcher队列, $watch 函数往该队列中推入 watcher, \$digest 的时候遍历该列表, watchFn 函数职责只有一个, 那就是返回监听的值, 根据比较条件执行相应的回调, 也就是 listenerFn 函数
 
 ```javascript
-Scope.prototype.$watch = function(watchFn, listenerFn) {
+Scope.prototype.$watch = function (watchFn, listenerFn) {
   var watcher = {
     watchFn: watchFn,
     listenerFn: listenerFn,
-    last: function() {}
+    last: function () {},
   };
   this.$$watchers.push(watcher);
 };
-Scope.prototype.$digest = function() {
+Scope.prototype.$digest = function () {
   var self = this;
   var newValue, oldValue;
-  _.forEach(this.$$watchers, function(watcher) {
+  _.forEach(this.$$watchers, function (watcher) {
     h;
     newValue = watcher.watchFn(self);
     oldValue = watcher.last;
@@ -42,6 +41,31 @@ Scope.prototype.$digest = function() {
     }
   });
 };
+```
+
+2020 补充:
+第一反应是写成了这个样子, 显然是不 OK 的, 后续的 wachVal 还要变化呢
+
+```js
+export default class Scope {
+  constructor() {
+    this.aProperty = 1;
+    this.$$listenerFns = {};
+  }
+  $watch(watchFn, listenerFn) {
+    let watchVal = watchFn();
+    if (!this.$$listenerFns[watchVal]) {
+      this.$$listenerFns[watchVal] = [];
+    }
+    this.$$listenerFns[watchVal].push(listenerFn);
+  }
+  $digest() {
+    let keys = Object.keys(this.$$listenerFns);
+    keys.forEach((key) => {
+      this.$$listenerFns[key].forEach((listenerFn) => listenerFn());
+    });
+  }
+}
 ```
 
 ### 使用空函数作为唯一值
@@ -81,13 +105,13 @@ Scope.prototype.$digest = function () {
 如果 listenerFn 中 watcherA 中的 WatchFnA 监听的 A 值在 WatcherB 中被改变, 而 WatcherB 中监测的值 B 在 watcherA 中被改变, 那么\$digest 过程会不断被执行, 因此要有一个最大的调用临界点, 一旦超过这个点, 就要抛出异常.
 
 ```javascript
-Scope.prototype.$digest = function() {
+Scope.prototype.$digest = function () {
   var ttl = 10;
   var dirty;
   do {
     dirty = this.$$digestOnce();
     if (dirty && !ttl--) {
-      throw "10 digest iterations reached";
+      throw '10 digest iterations reached';
     }
   } while (dirty);
 };
@@ -127,10 +151,10 @@ watcher.last = watcher.valueEq ? _.cloneDeep(newValue) : newValue;
 应用中有一些代码是不为 angular 感知的, 比如用户手动操作了 dom 修改了数据, 因此我们需要将新的变化纳入 scope 的检测, 这就是$eval和$apply 的初衷. **\$eval 接受一个函数并且以 scope 作为参数, 立即执行该函数**, 这使得我们可以在 scope 的上下文中对外部代码进行求值, \$apply 执行$eval操作后, 主动触发$digest 过程
 
 ```javascript
-Scope.prototype.$eval = function(expr, arg) {
+Scope.prototype.$eval = function (expr, arg) {
   return expr(this, arg);
 };
-Scope.prototype.$apply = function(expr) {
+Scope.prototype.$apply = function (expr) {
   try {
     return this.$eval(expr);
   } finally {
@@ -174,14 +198,14 @@ function Scope() {
 定义标记 phase 的两个函数
 
 ```javascript
-Scope.prototype.$beginPhase = function(phase) {
+Scope.prototype.$beginPhase = function (phase) {
   if (this.$$phase) {
-    throw this.$$phase + " already in progress";
+    throw this.$$phase + ' already in progress';
   }
   this.$$phase = phase;
 };
 
-Scope.prototype.$clearPhase = function() {
+Scope.prototype.$clearPhase = function () {
   this.$$phase = null;
 };
 ```
@@ -189,9 +213,9 @@ Scope.prototype.$clearPhase = function() {
 在\$digest 和 apply 中分别使用这两个函数来标志 phase
 
 ```javascript
-Scope.prototype.$apply = function(expr) {
+Scope.prototype.$apply = function (expr) {
   try {
-    this.$beginPhase("apply");
+    this.$beginPhase('apply');
   } finally {
     this.$clearPhase();
   }
@@ -201,10 +225,10 @@ Scope.prototype.$apply = function(expr) {
 最后一步,在\$evalAsync 中检测周期
 
 ```javascript
-Scope.prototype.$evalAsync = function(expr) {
+Scope.prototype.$evalAsync = function (expr) {
   var self = this;
   if (!self.$$phase && !self.$$asyncQueue.length) {
-    setTimeout(function() {
+    setTimeout(function () {
       if (self.$$asyncQueue.length) {
         self.$$digestOnce();
       }
@@ -248,9 +272,9 @@ this.$watch = function() {
 我们希望可以批量监听一组数据,当这些数据中的某个发生变化的时候, 都会触发相同的回调, 最容易想到的是将 watchFns 数组进行遍历, 对每个 watchFn 进行监听
 
 ```javascript
-Scope.prototype.$watchGroup = function(watchFns, listenerFn) {
+Scope.prototype.$watchGroup = function (watchFns, listenerFn) {
   var self = this;
-  _.forEach(watchFns, function(watchFn) {
+  _.forEach(watchFns, function (watchFn) {
     self.$watch(watchFn, listener);
   });
 };
