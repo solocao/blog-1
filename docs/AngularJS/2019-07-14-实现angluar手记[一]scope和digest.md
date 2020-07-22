@@ -8,7 +8,11 @@ permalink: 2019-07-14-build-your-own-angular-1-scope
 
 ## Scope
 
-angular1 使用的是"脏检查"机制来实现数据的双向绑定, 第一章要实现的 Scope 充当着重要的角色, 主要
+`Vue`和`AngularJS`一样, 都采用了观察者模式来实现自己的检测模型, **在模板编译的时候进行数据的依赖收集, 构建 watcher, 绑定相应的 updateView 函数**
+
+![vue](https://012.vuejs.org/images/mvvm.png)
+
+`angularJS` 使用的是"脏检查"机制来实现数据的双向绑定, 第一章要实现的 Scope 充当着重要的角色, 主要功能有:
 
 - controller 和 view 之间的数据传递
 - 应用间不同部分的数据传递
@@ -17,7 +21,7 @@ angular1 使用的是"脏检查"机制来实现数据的双向绑定, 第一章�
 
 ## Scope 与 Digest
 
-使用的是观察者模式, scope 中保存一个\$$watcher队列, $watch 函数往该队列中推入 watcher, \$digest 的时候遍历该列表, watchFn 函数职责只有一个, 那就是返回监听的值, 根据比较条件执行相应的回调, 也就是 listenerFn 函数
+使用的是观察者模式, scope 中保存一个`$watcher`队列, $watch 函数往该队列中推入 watcher, \$digest 的时候遍历该列表, watchFn 函数职责只有一个, 那就是返回监听的值, 根据比较条件执行相应的回调, 也就是 listenerFn 函数
 
 ```javascript
 Scope.prototype.$watch = function (watchFn, listenerFn) {
@@ -41,31 +45,6 @@ Scope.prototype.$digest = function () {
     }
   });
 };
-```
-
-2020 补充:
-第一反应是写成了这个样子, 显然是不 OK 的, 后续的 wachVal 还要变化呢
-
-```js
-export default class Scope {
-  constructor() {
-    this.aProperty = 1;
-    this.$$listenerFns = {};
-  }
-  $watch(watchFn, listenerFn) {
-    let watchVal = watchFn();
-    if (!this.$$listenerFns[watchVal]) {
-      this.$$listenerFns[watchVal] = [];
-    }
-    this.$$listenerFns[watchVal].push(listenerFn);
-  }
-  $digest() {
-    let keys = Object.keys(this.$$listenerFns);
-    keys.forEach((key) => {
-      this.$$listenerFns[key].forEach((listenerFn) => listenerFn());
-    });
-  }
-}
 ```
 
 ### 使用空函数作为唯一值
@@ -140,11 +119,13 @@ if (newValue !== oldValue) {
 
 ## 监听数组或者对象内部的变化
 
-当前的检查机制是使用===来进行比较的, 在面对复合数据类型如对象数组的时候, 并不能检测到数组或者对象内部的变化, 一种解决的办法是复制整个对象或者数组, 但是这样会带来内存的消耗, 因此 angular 提供了另外一套监听机制, collection watching(将在第三章实现)
+当前的检查机制是使用`===`来进行比较的, 在面对复合数据类型如对象数组的时候, 并不能检测到数组或者对象内部的变化, 一种解决的办法是复制整个对象或者数组, 但是这样会带来内存的消耗, 因此 angular 提供了另外一套监听机制, collection watching(将在第三章实现)
 
 ```javascript
 watcher.last = watcher.valueEq ? _.cloneDeep(newValue) : newValue;
 ```
+
+Ps: Vue2.x 的实现使用`$set`来处理新加入的 key, 而对数组则是直接通过直接修改 Array.prototype 的方法来处理
 
 ## \$eval 与\$apply
 
