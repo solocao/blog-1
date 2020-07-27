@@ -23,6 +23,8 @@ permalink: 2019-07-14-build-your-own-angular-1-scope
 
 使用的是观察者模式, scope 中保存一个`$watcher`队列, $watch 函数往该队列中推入 watcher, \$digest 的时候遍历该列表, watchFn 函数职责只有一个, 那就是返回监听的值, 根据比较条件执行相应的回调, 也就是 listenerFn 函数
 
+`Digest`可以类比`React`的`setData`, 触发视图更新
+
 ```javascript
 Scope.prototype.$watch = function (watchFn, listenerFn) {
   var watcher = {
@@ -125,7 +127,7 @@ if (newValue !== oldValue) {
 watcher.last = watcher.valueEq ? _.cloneDeep(newValue) : newValue;
 ```
 
-Ps: Vue2.x 的实现使用`$set`来处理新加入的 key, 而对数组则是直接通过直接修改 Array.prototype 的方法来处理
+**Ps**: Vue2.x 的实现使用`$set`来处理新加入的 key, 而对数组则是直接通过直接修改 Array.prototype 的方法来处理
 
 ## \$eval 与\$apply
 
@@ -146,7 +148,7 @@ Scope.prototype.$apply = function (expr) {
 
 ## \$evalAsync
 
-**在相同的 digest 周期内延迟执行某些函数或者表达式**, 处理的方法也简单, 使用一个\$\$asyncQueue 来执行我们需要异步执行的函数, 在每次 digest 前, 先处理该队列中的异步函数
+**在相同的 digest 周期内延迟执行某些函数或者表达式**, 比如 ajax 请求返回了数据, 处理的方法也简单, 使用一个\$\$asyncQueue 来执行我们需要异步执行的函数, 在每次 digest 前, 先处理该队列中的异步函数
 
 ```javascript
 function Scope() {
@@ -219,16 +221,14 @@ Scope.prototype.$evalAsync = function (expr) {
 };
 ```
 
-## \$applyAsync, \$\$postDigest
+## \$applyAsync
 
 $evalAsync用来处理digest周期内部需要延期执行的函数, 对于在digest周期外需要执行的函数, 我们需要定义另外一个函数$applyAsync, 该函数既不立即执行传入的函数也不立即触发 digest 周期, 而是将两者都延期执行, 一个常见的场景是 http 请求, 当请求数很多而我们每次获得响应都执行一次 digest 周期的话势必带来性能问题,\$applyAsync 可以将短期内的连续变化并入一个 digest 周期.
 
 - 延期执行, 使用 setTimeout 0, 因为当 setTimeout 中的函数被执行的时候, 主程上的其他代码肯定已经被执行完了.
-- 多个合并, 使用单例模式, 利用 setTimeout 返回的 id 作为\$\$applyAsyncId, 只有当 id 不存在的时候,才会安排一个新的 timeout
+- 多个合并, 利用 setTimeout 返回的 id 作为\$\$applyAsyncId, 只有当 id 不存在的时候,才会安排一个新的 timeout
 
-```
-
-```
+## \$\$postDigest
 
 ## Error handling
 
