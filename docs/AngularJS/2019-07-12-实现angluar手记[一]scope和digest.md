@@ -1,9 +1,9 @@
 ---
 title: '实现angluar手记[一]scope和digest'
-date: 2019-07-14
+date: 2019-07-12
 tags:
   - angular
-permalink: 2019-07-14-build-your-own-angular-1-scope
+permalink: 2019-07-12-build-your-own-angular-1-scope
 ---
 
 ## Scope
