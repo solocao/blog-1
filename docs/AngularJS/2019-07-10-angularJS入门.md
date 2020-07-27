@@ -1,13 +1,14 @@
 ---
-
 title: angularJS入门
-date: 2019-07-30T18:27:55.000Z
+date: 2019-07-10
 tags: null
-permalink: 2019-07-30-angular-tutorial
+permalink: 2019-07-10-angular-tutorial
 ---
 
+## 前言
+
 资料来源
-https://www.angularjs.net.cn/tutorial/22.html
+<https://www.angularjs.net.cn/tutorial/22.html>
 
 ## scope
 
@@ -29,7 +30,7 @@ https://www.angularjs.net.cn/tutorial/22.html
 
 Provider 图纸，其余 4 种分别是 —— Value，Factory，Service 和 Constant，这 4 种都只是基于 Provider 之上的语法糖。
 
-#### 关于模块
+### 关于模块
 
 为了使注入器知道如何创建这些对象，并让它们能绑定在一起协同工作，我们需要一张关于“图纸”的注册表。每个图纸都有对象的识别码以及如何创建该对象的说明。
 
