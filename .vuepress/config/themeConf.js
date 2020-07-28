@@ -14,16 +14,16 @@ module.exports = {
       link: '/2019-06-05-css-specificity/',
     },
     {
+      text: 'Angular',
+      link: '/2019-07-11-build-your-own-angular-0-project-setup/',
+    },
+    {
       text: 'React',
-      link: '/2019-06-01-react-props-children/',
+      link: '/2019-06-15-implement-react-router/',
     },
     {
       text: 'Vue',
       link: '/2020-05-12-using-mixin-in-vue/',
-    },
-    {
-      text: 'Angular',
-      link: '/2019-07-13-build-your-own-angular-0-project-setup/',
     },
     {
       text: '跨端开发',

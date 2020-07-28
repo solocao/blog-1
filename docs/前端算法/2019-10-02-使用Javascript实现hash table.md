@@ -1,5 +1,4 @@
 ---
-
 title: 使用Javascript实现hash table
 date: 2019-10-02T23:40:45.000Z
 tags: null
@@ -79,8 +78,6 @@ get(key) {
 
 麻烦的是第三个问题,index 索引的冲突问题,对于这个问题, 有两种经典的实现思路
 
-### 拉链法(seperate chaining )
-
 ### 开放寻址(open adderessign, Linear probing)
 
 哈希方法: 将键值映射到 0, M-1 上
@@ -89,8 +86,8 @@ get(key) {
 
 (ps: 数组的大小 M 必须大于键值对的个数 N)
 
-#### 参考资料:
+#### 参考资料
 
 [list of hash functions](https://en.wikipedia.org/wiki/List_of_hash_functions)
-https://www.freecodecamp.org/news/how-to-implement-a-simple-hash-table-in-javascript-cb3b9c1f2997/
-https://www.mattzeunert.com/2017/02/01/implementing-a-hash-table-in-javascript.html
+<https://www.freecodecamp.org/news/how-to-implement-a-simple-hash-table-in-javascript-cb3b9c1f2997/>
+<https://www.mattzeunert.com/2017/02/01/implementing-a-hash-table-in-javascript.html>
