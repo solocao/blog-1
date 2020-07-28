@@ -39,6 +39,8 @@
     "new": "chmod +x bin/new.js",
     "dev": "nodemon --watch .vuepress --watch docs --exec  npm run generate",
     "generate": "node ./bin/sidebar.js  && vuepress dev .",
+    "dev:nocache": "nodemon --watch .vuepress --watch docs --exec  npm run generate:nocache",
+    "generate:nocache": "node ./bin/sidebar.js  && vuepress dev . --no-cache",
     "build": "node bin/sidebar.js && vuepress build .",
     "build:debug": "node bin/sidebar.js && vuepress build . --debug",
     "check": "node bin/prettier.js -t docs -c",

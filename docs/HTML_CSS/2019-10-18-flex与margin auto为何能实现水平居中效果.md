@@ -1,19 +1,20 @@
 ---
-
 title: flex与margin auto为何能实现水平居中效果
-date: 2019-10-18T23:20:44.000Z
+date: 2019-10-18
 tags:
   - css
   - 水平垂直居中
 permalink: 2019-10-18-flex-and-margin-auto
 ---
 
+## 前言
+
 在 flex 布局出来之前，实现垂直居中效果可谓是 css 中的一大难点，各种脑洞五花八门，在 flex 出来之后，一切都变得简单起来，仅仅需要下面几行代码
 
 ```
 // html
 <div class="container">
-    <div class="content"></div>
+    <div class="content"></div>Kv
 </div>
 .container {
     display: flex;
@@ -38,6 +39,8 @@ permalink: 2019-10-18-flex-and-margin-auto
   (<a href='https://codepen.io/Allen6228'>@Allen6228</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
+## 解释
+
 css 规范是这样解释的,在 dispaly: flex 下：
 
 > Prior to alignment via justify-content and align-self, any positive free space is distributed to auto margins in that dimension.
@@ -60,6 +63,6 @@ css 规范是这样解释的,在 dispaly: flex 下：
 }
 ```
 
-参考：
-[css 世界: margin auto]()
+## 参考
+
 [the-peculiar-magic-of-flexbox-and-auto-margins](https://css-tricks.com/the-peculiar-magic-of-flexbox-and-auto-margins/)
