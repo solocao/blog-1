@@ -1,10 +1,9 @@
 ---
-
-title: "实现angluar手记[九]表达式与watcher结合"
-date: 2019-07-21T08:28:16.000Z
+title: '实现angluar手记[九]表达式与watcher结合'
+date: 2019-07-21
 tags:
   - angular
-permalink: 2019-07-20-build-your-own-angular-cp9-expressions-and-watches
+permalink: 2019-07-21-build-your-own-angular-cp9-expressions-and-watches
 ---
 
 ## 表达式与 watcher 结合
@@ -12,13 +11,13 @@ permalink: 2019-07-20-build-your-own-angular-cp9-expressions-and-watches
 在前面的章节中, `Scope.$watch`函数接受的`watchFn`仅仅是一个返回值的普通函数, 而本章节中表达式与 watcher 连接的关键点是将 watcher 中的`watchFn`替换成`parse(watchFn)`, 将 parse 生成的新函数作为 watchFn, 当然,我们也需要对应的对`$watchCollection`,`$eval`,`$apply`, `evalAsync`等方法做处理
 
 ```js
-Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
+Scope.prototype.$watch = function (watchFn, listenerFn, valueEq) {
   var self = this;
   var watcher = {
     watchFn: parse(watchFn), // wathcCollection等方法也需要做一并处理
-    listenerFn: listenerFn || function() {},
+    listenerFn: listenerFn || function () {},
     last: initWatchVal,
-    valueEq: !!valueEq
+    valueEq: !!valueEq,
   };
 };
 ```
@@ -28,11 +27,11 @@ Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
 ```js
 function parse(expr) {
   switch (typeof expr) {
-    case "string":
+    case 'string':
       var lexer = new Lexer();
       var parser = new Parser(lexer);
       return parser.parse(expr);
-    case "function":
+    case 'function':
       return expr;
     default:
       return _.noop;
@@ -112,10 +111,10 @@ function markConstantAndWatchExpressions(ast) {
 ```javascript
 function constantWatchDelegate(scope, listenerFn, valueEq, watchFn) {
   var unwatch = scope.$watch(
-    function() {
+    function () {
       return watchFn(scope);
     },
-    function(newValue, oldValue, scope) {
+    function (newValue, oldValue, scope) {
       if (_.isFunction(listenerFn)) {
         listenerFn.apply(this, arguments);
       }
