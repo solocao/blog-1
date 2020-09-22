@@ -46,7 +46,7 @@ function parse(expr) {
 为此,我们明确两个概念:
 
 - 字面量, 如 42, [42, 'abc'], [42, 'abc', aVariable]
-- 常量,42, [42, 'abc']是常量,而[42, 'abc', aVariable]不是, 因为 aVarible 的存在
+- 常量,42, [42, 'abc']是常量,而[42, 'abc', aVariable]不是, 因为 aVariable 的存在
 
 实现的方式是为 parse 生成的函数添加额外的参数, `literal`, `constant`,
 
@@ -75,7 +75,7 @@ ASTCompiler.prototype.compile = function(text) {
 ASTCompiler.prototype.compile = function(text) {
   markConstantExpressions(ast);
   ....
-  fn.constant = ast.constant;
+  fn.constant = ast.constant; //
 }
 ```
 
@@ -92,7 +92,7 @@ function markConstantAndWatchExpressions(ast) {
       markConstantAndWatchExpressions(expr);
       allConstants = allConstants && expr.constant;
     });
-    ast.constant = allConstants;
+    ast.constant = allConstants; // 每一个节点都有constant属性
     break;
   case AST.Literal:
     ast.constant = true;
@@ -138,10 +138,19 @@ function constantWatchDelegate(scope, listenerFn, valueEq, watchFn) {
 
 ## input-tracking
 
+计算属性：a + b 当中的至少一个发生变化的时候，才触发更新
+
+基本思路： 为数组，对象中的所有非常量建立一个 watchDelegate, 只有当其中的某个发生变化的时候，会触发更新
+
 ```js
 ```
 
 ## stateful Filters
+
+带状态的过滤器
+
+- 一般的过滤器我们默认为纯函数
+- 特殊情况下过滤器可能是不纯的，比如一个过滤器以当前时间作为输出
 
 ```js
 ```

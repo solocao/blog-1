@@ -9,6 +9,8 @@ footer: MIT Licensed | Copyright © 2020 逍遥一生
 
 ## 推荐阅读
 
+ps: 墙内的用户若访问速度比较慢，可以访问[这里 👉](https://chenxiaoyao6228.gitee.io)
+
 ### AngularJS
 
 [实现 angluar 手记[零]项目初始化]('www.chenxiaoyao.cn/2019-07-11-build-your-own-angular-0-project-setup')
