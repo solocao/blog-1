@@ -1,10 +1,9 @@
 ---
-
-title: "实现angluar手记[九]表达式与watcher结合"
-date: 2019-07-21T08:28:16.000Z
+title: '实现angluar手记[九]表达式与watcher结合'
+date: 2019-07-21
 tags:
   - angular
-permalink: 2019-07-20-build-your-own-angular-cp9-expressions-and-watches
+permalink: 2019-07-21-build-your-own-angular-cp9-expressions-and-watches
 ---
 
 ## 表达式与 watcher 结合
@@ -12,13 +11,13 @@ permalink: 2019-07-20-build-your-own-angular-cp9-expressions-and-watches
 在前面的章节中, `Scope.$watch`函数接受的`watchFn`仅仅是一个返回值的普通函数, 而本章节中表达式与 watcher 连接的关键点是将 watcher 中的`watchFn`替换成`parse(watchFn)`, 将 parse 生成的新函数作为 watchFn, 当然,我们也需要对应的对`$watchCollection`,`$eval`,`$apply`, `evalAsync`等方法做处理
 
 ```js
-Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
+Scope.prototype.$watch = function (watchFn, listenerFn, valueEq) {
   var self = this;
   var watcher = {
     watchFn: parse(watchFn), // wathcCollection等方法也需要做一并处理
-    listenerFn: listenerFn || function() {},
+    listenerFn: listenerFn || function () {},
     last: initWatchVal,
-    valueEq: !!valueEq
+    valueEq: !!valueEq,
   };
 };
 ```
@@ -28,11 +27,11 @@ Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
 ```js
 function parse(expr) {
   switch (typeof expr) {
-    case "string":
+    case 'string':
       var lexer = new Lexer();
       var parser = new Parser(lexer);
       return parser.parse(expr);
-    case "function":
+    case 'function':
       return expr;
     default:
       return _.noop;
@@ -47,7 +46,7 @@ function parse(expr) {
 为此,我们明确两个概念:
 
 - 字面量, 如 42, [42, 'abc'], [42, 'abc', aVariable]
-- 常量,42, [42, 'abc']是常量,而[42, 'abc', aVariable]不是, 因为 aVarible 的存在
+- 常量,42, [42, 'abc']是常量,而[42, 'abc', aVariable]不是, 因为 aVariable 的存在
 
 实现的方式是为 parse 生成的函数添加额外的参数, `literal`, `constant`,
 
@@ -76,7 +75,7 @@ ASTCompiler.prototype.compile = function(text) {
 ASTCompiler.prototype.compile = function(text) {
   markConstantExpressions(ast);
   ....
-  fn.constant = ast.constant;
+  fn.constant = ast.constant; //
 }
 ```
 
@@ -93,7 +92,7 @@ function markConstantAndWatchExpressions(ast) {
       markConstantAndWatchExpressions(expr);
       allConstants = allConstants && expr.constant;
     });
-    ast.constant = allConstants;
+    ast.constant = allConstants; // 每一个节点都有constant属性
     break;
   case AST.Literal:
     ast.constant = true;
@@ -112,10 +111,10 @@ function markConstantAndWatchExpressions(ast) {
 ```javascript
 function constantWatchDelegate(scope, listenerFn, valueEq, watchFn) {
   var unwatch = scope.$watch(
-    function() {
+    function () {
       return watchFn(scope);
     },
-    function(newValue, oldValue, scope) {
+    function (newValue, oldValue, scope) {
       if (_.isFunction(listenerFn)) {
         listenerFn.apply(this, arguments);
       }
@@ -139,10 +138,19 @@ function constantWatchDelegate(scope, listenerFn, valueEq, watchFn) {
 
 ## input-tracking
 
+计算属性：a + b 当中的至少一个发生变化的时候，才触发更新
+
+基本思路： 为数组，对象中的所有非常量建立一个 watchDelegate, 只有当其中的某个发生变化的时候，会触发更新
+
 ```js
 ```
 
 ## stateful Filters
+
+带状态的过滤器
+
+- 一般的过滤器我们默认为纯函数
+- 特殊情况下过滤器可能是不纯的，比如一个过滤器以当前时间作为输出
 
 ```js
 ```
