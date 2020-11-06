@@ -1,5 +1,5 @@
 ---
-title: '实现angluar手记[一]scope和digest'
+title: '实现angular手记[一]scope和digest'
 date: 2019-07-12
 tags:
   - angular

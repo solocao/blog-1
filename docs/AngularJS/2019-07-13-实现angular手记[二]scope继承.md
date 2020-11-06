@@ -1,5 +1,5 @@
 ---
-title: '实现angluar手记[二]scope继承'
+title: '实现angular手记[二]scope继承'
 date: 2019-07-13
 tags:
   - angular
