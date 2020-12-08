@@ -77,7 +77,7 @@ export default {
 
 ## 社区常用指令推荐
 
-vue-focus
+vue-focus, v-lazy-load
 
 ## 参考
 
