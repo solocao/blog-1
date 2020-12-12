@@ -6,6 +6,8 @@ tags: null
 permalink: 2019-10-07-data-structure-binary-search-tree
 ---
 
+代码如下:
+
 ```js
 function Node(value) {
   this.value = value;

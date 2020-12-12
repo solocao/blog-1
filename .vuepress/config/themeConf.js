@@ -35,7 +35,7 @@ module.exports = {
     },
     {
       text: '计算机基础',
-      link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/',
+      link: '/2020-12-12-composing-software-functional-and-object-composition/',
     },
     {
       text: 'Github',

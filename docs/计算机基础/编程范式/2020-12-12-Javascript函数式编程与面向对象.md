@@ -1,5 +1,5 @@
 ---
-title: 软件组合:Javascript函数式编程与对象组合的探索
+title: Javascript中的函数式编程与面向对象
 tags:
   - javascript
 date: 2020-12-12
