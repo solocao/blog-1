@@ -4,6 +4,7 @@ const path = require('path')
 const ejs = require('ejs')
 const logger = require('tracer').colorConsole()
 const matter = require('gray-matter')
+const pathToBeExecuted = ['.DS_Store']
 
 const docsRoot = path.join(__dirname, '..', 'docs')
 // const notesRoot = path.join(__dirname, '..', 'notes');
@@ -71,9 +72,11 @@ function readTocs(root) {
   const result = []
   const files = fs.readdirSync(root)
   files.forEach((name) => {
-    const file = path.resolve(root, name)
-    if (fs.statSync(file).isDirectory()) {
-      result.push(file)
+    if (!pathToBeExecuted.includes(name)) {
+      const file = path.resolve(root, name)
+        if (fs.statSync(file).isDirectory()) {
+          result.push(file)
+        }
     }
   })
   return result
@@ -113,11 +116,12 @@ function mapTocToSidebar(root, prefix) {
         children: mapTocToSidebar(file, prefix + filename + '/'),
       }
     } else {
-      let title = filename.split('.')[0].slice(11)
-      sidebar[uuid] = [prefix + filename, title]
+      if (!pathToBeExecuted.includes(filename)) {
+        let title = filename.split('.')[0].slice(11)
+        sidebar[uuid] = [prefix + filename, title]
+      }
     }
   })
   sidebar = sidebar.filter((item) => item !== null && item !== undefined)
-
   return sidebar
 }
