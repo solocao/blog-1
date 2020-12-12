@@ -17,8 +17,7 @@ let absPath = path.resolve(__dirname, '../drafts/', fileName)
 
 console.log(absPath)
 
-let template = `
----
+let template = `---
 title: ${name}
 tags:
   - javascript

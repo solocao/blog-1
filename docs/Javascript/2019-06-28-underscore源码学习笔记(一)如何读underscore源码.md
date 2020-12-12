@@ -23,7 +23,7 @@ permalink: 2019-06-28-underscore-analysis-1
 ```js
 _.map = _.collect = function(obj, iteratee, context) {
   iteratee = cb(iteratee, context); //这里返回的就是我们传入的 function(num){ return num * 3;}
-  var keys = !isArrayLike(obj) && _.keys(obj), //工具方法,区分array和object
+  var keys = !isArrayLike(obj) && _.keys(obj), //工具方法,区分varray和object
     length = (keys || obj).length,
     results = Array(length);
   for (var index = 0; index < length; index++) {

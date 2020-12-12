@@ -14,38 +14,29 @@ module.exports = {
       link: '/2019-06-05-css-specificity/',
     },
     {
-      text: 'Angular',
-      link: '/2019-07-11-build-your-own-angular-0-project-setup/',
-    },
-    {
-      text: 'React',
-      link: '/2019-06-15-implement-react-router/',
-    },
-    {
-      text: 'Vue',
-      link: '/2020-05-12-using-mixin-in-vue/',
-    },
-    {
-      text: '跨端开发',
-      link: '/2020-06-30-Electron-dynamically-pack-with-params/',
-    },
-    {
       text: 'Javascript',
       link: '/2019-06-10-javascript-inheritance-1/',
     },
-
     {
-      text: '前端算法',
-      link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/',
+      text: '前端框架',
+      link: '/2019-07-11-build-your-own-angular-0-project-setup/',
     },
     {
-      text: 'Node/工具',
+      text: '网络与浏览器',
+      link: '/2020-12-12-dns/',
+    },
+    {
+      text: 'Node/前端工程化',
       link: '/2019-06-02-koa-source-code-analysis/',
     },
-    // {
-    //   text: '程序人生',
-    //   link: '/2019-06-02-koa-source-code-analysis/',
-    // },
+    {
+      text: '面试题集合',
+      link: '/2020-12-09-promise-light-problem/',
+    },
+    {
+      text: '计算机基础',
+      link: '/2020-12-12-composing-software-functional-and-object-composition/',
+    },
     {
       text: 'Github',
       link: 'https://github.com/chenxiaoyao6228',
