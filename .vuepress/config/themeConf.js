@@ -22,12 +22,20 @@ module.exports = {
       link: '/2019-07-11-build-your-own-angular-0-project-setup/',
     },
     {
-      text: '计算机科学',
-      link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/',
+      text: '网络与浏览器',
+      link: '/2020-12-12-dns/',
     },
     {
-      text: 'Node/工具',
+      text: 'Node/前端工程化',
       link: '/2019-06-02-koa-source-code-analysis/',
+    },
+    {
+      text: '面试题集合',
+      link: '/2020-12-09-promise-light-problem/',
+    },
+    {
+      text: '计算机基础',
+      link: '/2019-09-13-leetcode-4-median-of-two-sorted-arrays/',
     },
     {
       text: 'Github',

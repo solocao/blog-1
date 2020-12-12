@@ -6,3 +6,4 @@ node_modules
 dist
 .vuepress/config/sidebar-auto.js
 drafts
+data.json
